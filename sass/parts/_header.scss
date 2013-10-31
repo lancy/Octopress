@@ -341,6 +341,13 @@ $header-height: 30px;
 					border: 1px solid darken(#55CFF8, 10%);
 				}
 			}
+            &.weibo{
+				background: image-url('social/weibo.png') center no-repeat #F90005;
+				border: 1px solid #F90005;
+				&:hover{
+					border: 1px solid darken(#F90005, 10%);
+				}
+            }
 			&.github{
 				background: image-url('social/github.png') center no-repeat rgb(175,182,202);
 				border: 1px solid rgb(175,182,202);

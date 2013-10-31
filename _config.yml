@@ -72,6 +72,9 @@ github_skip_forks: true
 # twitter_user: lancy1014
 # twitter_tweet_button: true
 
+# Weibo
+weibo_user: lancy1014
+
 # Google +1
 google_plus_one: false
 google_plus_one_size: medium
