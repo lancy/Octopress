@@ -156,16 +156,29 @@ reloadData]`就能生效了呢？因为这样在`initWithNibName`的第一次调
 getter，也就不会有后面一连串的连锁反应。之后顺利在`viewdidload`的时候只调用一次，完成init。
 
 知道了问题的关键，还能有各种各样让他生效的方法，就不吐槽了。
+
 ## 正确的写法
 这段奇葩代码带给我最大的感触就是，不好好写规范的代码，各种问题都会坑死你。我认为规范的写法应该是
 
-1. 不要重写getter和setter函数，使用property生成的getter和setter
-2. 不要在vc的init的函数里面初始化，尤其是初始化视图。而应该在viewdidload里面初始化，保证self.view已经生成。
+1. <del>不要重写getter和setter函数，使用property生成的getter和setter</del>
+2. 不要在vc的init的函数里面初始化，尤其是初始化视图。而应该在viewdidload里面初始化，保证self.view已经生成。（非ARC环境下还需要注意memory warning导致的viewdidload多次加载而多次初始化所带来的内存泄露问题。最安全的做法是lazy instantiation）
 3. 应该使用自顶向下的程序设计方法，保证程序的顺序执行和层次关系。不应该出现如上程序的跳来跳去的调用。
 
 ## 后记
-帮人debug这种事情真心蛋疼，看不规范的代码像噩梦。
 
-P.S.好想看objc和cocoa源码。。
+帮人debug还是有好处的，让我结识了这位bug兄。也让我更加深入的了解了cocoa的变量访问机制，debug的时候顺带还测试了KVO。
+
+## Edit
+
+我又重新去看了property和getter，setter的资料，也看了苹果对property的解释。最后我修正关于不要重写getter和setter函数的观点，更正为可以重写getter和setter，目的可以为lazy instantiation, UI updating, consistency checking，等。但需要注意如上程序的连锁反应。代码的灵活性和安全性
+
+关于@property,经过和大家的讨论也有了一个结论:
+
+Why property？
+
+Most importantly, it provides safety and subclassablility for instance variables.
+Also provides “value” for lazy instantiation, UI updating, consistency checking, etc.
 
 Lancy
+
+11.27.2012
