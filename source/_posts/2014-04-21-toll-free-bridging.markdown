@@ -88,7 +88,7 @@ CFRelease((CFStringRef)nsStr);
 ```objective-c
 // objc to cf
 NSString *nsStr = [self createSomeNSString];
-CFStringRef *cfStr = (__bridge CFStringRef)nsStr;
+CFStringRef cfStr = (__bridge CFStringRef)nsStr;
 CFUseCFString(cfStr);
 // CFRelease(cfStr); 不需要
 ```
@@ -114,7 +114,7 @@ CFRelease(hello); // 需要
 ```objective-c
 // objc to cf
 NSString *nsStr = [self createSomeNSString];
-CFStringRef *cfStr = (__bridge_retained CFStringRef)nsStr;
+CFStringRef cfStr = (__bridge_retained CFStringRef)nsStr;
 CFUseCFString(cfStr);
 CFRelease(cfStr); // 需要
 ```
