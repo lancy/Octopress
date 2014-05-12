@@ -58,9 +58,9 @@ sum = addemUp(1,2,3,4,5,0);
 ### Format string
 如C语言中的`printf`，Cocoa中的`NSLog`，`[NSString stringWithFormat:]`就是使用了Format String的解决方案。通常，该函数的第一个参数既为一个format string，函数内部实现会扫描这个format string，来确定之后接着的可变参数的数量和类型。例如：
 ```objc
-NSString *str = [NSString stringWithFormat:@"int %d, str %@, float $g", 123, @"ok", 123.4];
+NSString *str = [NSString stringWithFormat:@"int %d, str %@, float %g", 123, @"ok", 123.4];
 ```
-这里使用了@作为转义符，其后跟着的d代表int，@代表id，g代表float/double，这表示后面必须有三个参数，其类型必须与format string所指定的一致。
+这里使用了%作为转义符，其后跟着的d代表int，@代表id，g代表float/double，这表示后面必须有三个参数，其类型必须与format string所指定的一致。
 
 如之前所说，提供的参数的数量或者类型若与提供的format string不一致，则会发生不可预知的问题。而在运行的时候，我们没有任何的办法去保证其正确性，幸运的是编译器提供了一些方法，能让我们在编译的时候做一些检查：
 
